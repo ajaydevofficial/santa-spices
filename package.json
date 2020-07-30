@@ -9,12 +9,27 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/vue-fontawesome": "^0.1.10",
+    "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "firebase": "^7.17.1",
     "firebase-functions": "^3.8.0",
     "firebase-tools": "^8.6.0",
-    "nuxt": "^2.14.0"
+    "izitoast": "^1.4.0",
+    "nuxt": "^2.14.0",
+    "vue-notifications": "^1.0.2",
+    "vue-router": "^3.3.4",
+    "vuex": "^3.5.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^9.0.2"
+  }
 }

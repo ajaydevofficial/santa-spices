@@ -28,7 +28,18 @@
 </template>
 
 <script>
-export default {}
+import firebase from 'firebase';
+
+export default {
+  asyncData() {
+    return {
+      authenticatedUser: null
+    }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => (this.authenticatedUser = user))
+  }
+}
 </script>
 
 <style>
