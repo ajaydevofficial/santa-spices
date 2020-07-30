@@ -1,0 +1,50 @@
+@import '_bootstrap-custom.scss';
+@import '_opensans.scss';
+@import '_variables.scss';
+@import '_mixins.scss';
+@import '_normalize.scss';
+
+body{
+  background-color: #fbfbfb;
+}
+
+// set fa icon size 24 by default
+svg[data-prefix="fas"] {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.62);
+  width: 24px;
+  height: 24px;
+}
+
+
+
+.sign-in-btn, .sign-up-btn {
+  background: $pt-sign-bg-color;
+  box-shadow: $pt-box-shadow-default;
+  border-radius: 5px;
+  height: 60px;
+  font-size: 18px;
+}
+.datasource-name{
+  padding: 24px 0;
+}
+
+.text-main{
+  color:#3da9fc !important;
+}
+.bg-headline{
+  background-color:#094067 !important;
+  color: #fffffe;
+}
+
+.light-dark-border{
+  border: 0.5px solid #0940672c;
+}
+.input::placeholder{
+  font-size: 12px;
+  color: #858585;
+}
+.form-control{
+  height:3em !important;
+  font-size:14px !important
+}

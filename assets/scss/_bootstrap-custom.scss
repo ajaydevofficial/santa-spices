@@ -1,0 +1,77 @@
+
+
+$font-family-base: Open Sans;
+// Bootstrap css overrides
+$input-height: 3.7em;
+$input-placeholder-color: #9D9D9D;
+//$input-border-color: #fff;
+$input-border-radius: 5px;
+$input-font-family: Open Sans;
+$input-font-size: 16px;
+$input-font-weight: normal;
+$body-color: #787878;
+
+$primaryText: rgba(0, 0, 0, 0.85);
+$secondaryText: rgba(0, 0, 0, 0.4);
+$tertiaryText: rgba(0, 0, 0, 0.4);
+
+$border: rgba(0, 0, 0, 0.2);
+$divider: rgba(0, 0, 0, 0.12);
+$hover: rgba(0, 0, 0, 0.04);
+
+$accentBase: #3B69F2;
+$accentDarker: #3658C0;
+$accentLighter: #E6F2FA;
+$successBase: #498356;
+$successLighter: #EDFCF5;
+$dangerBase: #AD1400;
+$dangerLighter: #FBE9E3;
+$warningBase: #DFA831;
+$warningLighter: #FDF7DD;
+
+$backgroundBase: #F5F5F5;
+$backgroundLighter: #FAFAFA;
+$overlayDark: rgba(0, 0, 0, 0.4);
+
+$primary: $accentBase;
+$danger: #AD1400;
+$warning: #DFA831;
+
+$enable-caret: false;
+$link-hover-color: $accentDarker;
+$enable-validation-icons: false;
+
+$input-height: 2em;
+$input-bg: #FFFFFF;
+$input-border-color: $border;
+$input-focus-border-color: $accentBase;
+$input-placeholder-color: $secondaryText;
+
+
+//btn
+
+
+
+.container-fluid {
+  padding: 0 24px !important;
+}
+
+.col-form-label {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  color: rgba(0, 0, 0, 0.62) !important;
+}
+
+.modal-title {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+// Loaded bootstrap css
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+

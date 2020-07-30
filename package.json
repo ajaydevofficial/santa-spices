@@ -11,6 +11,9 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "firebase": "^7.17.1",
+    "firebase-functions": "^3.8.0",
+    "firebase-tools": "^8.6.0",
     "nuxt": "^2.14.0"
   },
   "devDependencies": {}
