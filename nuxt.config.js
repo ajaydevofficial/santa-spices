@@ -42,6 +42,7 @@ export default {
     { src: '@/plugins/fontawesome.js', mode: 'client'},
     { src: '@/plugins/bootstrap-vue.js', mode: 'client'},
     { src: '@/plugins/firebase.js', mode: 'client'},
+    { src: '@/plugins/fireauth.js', mode: 'client'},
     { src: '@/plugins/vue-notifications.js', mode: 'client'},
   ],
   /*
@@ -70,5 +71,8 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  router: {
+    middleware: 'auth'
   }
 }

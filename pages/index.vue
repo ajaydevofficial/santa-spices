@@ -15,12 +15,11 @@
           Documentation
         </a>
         <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
+          @click="signOut()"
           rel="noopener noreferrer"
           class="button--grey"
         >
-          GitHub
+          Logout
         </a>
       </div>
     </div>
@@ -29,6 +28,7 @@
 
 <script>
 import firebase from 'firebase';
+import VueNotifications from 'vue-notifications';
 
 export default {
   asyncData() {
@@ -37,7 +37,26 @@ export default {
     }
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => (this.authenticatedUser = user))
+    firebase.auth().onAuthStateChanged((user)=>{
+      this.authenticatedUser = user;
+      this.$store.state.user = user;
+    })
+  },
+  methods:{
+    signOut(){
+      this.$store.dispatch('signOut', {}).then(() => {
+          this.$router.push('/login')
+      }).catch(err => {
+          this.logoutError(err.message)
+      })
+    }
+  },
+  notifications: {
+    logoutError: {
+        type: VueNotifications.types.error,
+        title: 'Logout failed',
+        message: 'Try again'
+    }
   }
 }
 </script>
