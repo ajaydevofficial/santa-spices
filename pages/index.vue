@@ -1,103 +1,72 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        santa-spices
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          @click="signOut()"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          Logout
-        </a>
+  <div>
+    <!-- <pt-header @toggleSideBar="setSideBarStatus"></pt-header> -->
+    <div class="main-section d-flex">
+      <sidebar :class="{showSidebar: showSidebar,hideSidebar: !showSidebar}"></sidebar>
+      <div class="layout-main d-flex">
+        <nuxt-child></nuxt-child>
       </div>
     </div>
   </div>
 </template>
 
+
 <script>
-import firebase from 'firebase';
+import sidebar from '~/components/sidebar.vue';
 import VueNotifications from 'vue-notifications';
 
+
 export default {
-  asyncData() {
+  middleware: 'auth',
+  components: {
+    sidebar,
+  },
+  data: function() {
     return {
-      authenticatedUser: null
+      showSidebar: true
     }
   },
-  created() {
-    firebase.auth().onAuthStateChanged((user)=>{
-      this.authenticatedUser = user;
-      this.$store.state.user = user;
-    })
-  },
-  methods:{
-    signOut(){
-      this.$store.dispatch('signOut', {}).then(() => {
-          this.$router.push('/login')
-      }).catch(err => {
-          this.logoutError(err.message)
-      })
+  methods: {
+    setSideBarStatus(){
+      this.showSidebar = !this.showSidebar;
     }
   },
   notifications: {
-    logoutError: {
-        type: VueNotifications.types.error,
-        title: 'Logout failed',
-        message: 'Try again'
+        showSuccessMsg: {
+            type: VueNotifications.types.success,
+            title: 'Success',
+            message: ''
+        },
+        showError: {
+            type: VueNotifications.types.error,
+            title: 'Oops',
+            message: ''
+        }
     }
-  }
 }
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+<style lang="scss">
+.showSidebar{
+  transition: width 0.3s ease-in-out;
+  -webkit-transition: width 0.3s ease-in-out;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.hideSidebar {
+  width: 85px;
+  transition: width 0.3s ease-in;
+  -webkit-transition: width 0.3s ease-in;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.layout-main {
+  flex: 1 1 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  overflow: auto;
+  padding: 24px;
 }
-
-.links {
-  padding-top: 15px;
+.main-section {
+  min-height: 0;
+  height: 98vh;
 }
 </style>
