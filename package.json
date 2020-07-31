@@ -9,9 +9,6 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.30",
-    "@fortawesome/free-solid-svg-icons": "^5.14.0",
-    "@fortawesome/vue-fontawesome": "^0.1.10",
     "@nuxtjs/axios": "^5.12.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "axios": "^0.19.2",
@@ -22,6 +19,7 @@
     "firebase-tools": "^8.6.0",
     "izitoast": "^1.4.0",
     "nuxt": "^2.14.0",
+    "vue-awesome": "^4.1.0",
     "vue-notifications": "^1.0.2",
     "vue-router": "^3.3.4",
     "vuex": "^3.5.1"
