@@ -32,7 +32,7 @@
 		            { name: 'Dashboard', icon: 'home', url: '/',key:1},
                     { name: 'Purchase Details', icon: 'cash-register', url: '/purchase',key:2},
 					{ name: 'Drying Details', icon: 'fire-alt', url: '/drying',key:3},
-					{ name: 'Vendors', icon: 'money-bill', url: '/vendors',key:4},
+					{ name: 'Vendors', icon: 'id-badge', url: '/vendors',key:4},
 					{ name: 'Price Calculator', icon: 'calculator', url: '/calculator',key:5},
 					{ name: 'Miscellaneous', icon: 'box-open', url: '/miscellaneous', key:6},
                 ],

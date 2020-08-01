@@ -14,6 +14,7 @@ import 'vue-awesome/icons/calculator';
 import 'vue-awesome/icons/angle-left';
 import 'vue-awesome/icons/angle-right';
 import 'vue-awesome/icons/box-open';
+import 'vue-awesome/icons/search'
  
 /* Register component with one of 2 methods */
  

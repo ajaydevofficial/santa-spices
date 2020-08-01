@@ -112,6 +112,23 @@ body{
 .br-default{
   border-radius: 0.3em !important;
 }
+
 .shadow{
   box-shadow: 0px 7px 30px  #bac1c7 !important;
+}
+
+.height-fit{
+  height: fit-content;
+}
+.custom-border-search-input{
+  border-radius: 0.5em 0 0 0.5em !important;
+  border: none !important;
+
+}
+.custom-button-border{
+  border-radius: 0 0.5em 0.5em 0 !important;
+  border:none;
+}
+.border{
+  border-radius: 0.5em !important;
 }

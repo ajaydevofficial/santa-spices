@@ -63,7 +63,8 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   overflow: auto;
-  padding: 24px;
+  padding: 0em 1em;
+  max-width:1920px
 }
 .main-section {
   min-height: 0;
