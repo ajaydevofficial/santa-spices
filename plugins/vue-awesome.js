@@ -15,6 +15,7 @@ import 'vue-awesome/icons/angle-left';
 import 'vue-awesome/icons/angle-right';
 import 'vue-awesome/icons/box-open';
 import 'vue-awesome/icons/search'
+import 'vue-awesome/icons/phone-alt'
  
 /* Register component with one of 2 methods */
  

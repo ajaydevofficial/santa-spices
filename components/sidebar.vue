@@ -6,11 +6,11 @@
             <hr>
         </div>
         <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="main-bg active card shadow px-0" class="sidebar-item">
-            <v-icon :name="nav.icon"/>
+            <v-icon class="icons" :name="nav.icon"/>
             <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
         </b-nav-item>
         <b-nav-item @click="signOut" exact exact-active-class="main-bg active card shadow px-0" class="sidebar-item">
-            <v-icon name="sign-out-alt"/>
+            <v-icon class="icons" name="sign-out-alt"/>
             <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">Logout</span>
         </b-nav-item>
     </div>
@@ -70,7 +70,7 @@
     position : relative;
     width:275px ;
     height:100%;
-    box-shadow: 0px 7px 20px  #bac1c77a;
+    box-shadow: 0px 7px 30px #bac1c7 !important;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-flow: column;
@@ -118,7 +118,7 @@
       color:$sp-light !important;
     }
   }
-  svg{
+  .icons{
     width: 20px;
     height: 20px;
     color: $sp-primary;
