@@ -1,0 +1,8 @@
+
+### Snapchat microservice call API
+POST https://us-central1-santa-spices.cloudfunctions.net/addProductCategory
+Content-Type: application/json
+
+{
+    "product": "Rice"
+}

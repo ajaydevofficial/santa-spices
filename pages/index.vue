@@ -14,10 +14,11 @@
 <script>
 import sidebar from '~/components/sidebar.vue';
 import VueNotifications from 'vue-notifications';
-
-
 export default {
   middleware: 'auth',
+  mounted(){
+
+  },
   components: {
     sidebar,
   },
