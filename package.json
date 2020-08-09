@@ -14,9 +14,11 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
-    "firebase": "^7.17.1",
-    "firebase-functions": "^3.8.0",
-    "firebase-tools": "^8.6.0",
+    "firebase": "^7.17.2",
+    "firebase-admin": "^9.0.0",
+    "firebase-functions": "^3.9.0",
+    "firebase-tools": "^8.7.0",
+    "http2": "^3.3.7",
     "izitoast": "^1.4.0",
     "nuxt": "^2.14.0",
     "vue-awesome": "^4.1.0",
@@ -29,5 +31,17 @@
     "pug": "^3.0.0",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^9.0.2"
-  }
+  },
+  "description": "## Build Setup",
+  "main": "nuxt.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajaydevofficial/santa-spices.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajaydevofficial/santa-spices/issues"
+  },
+  "homepage": "https://github.com/ajaydevofficial/santa-spices#readme"
 }
