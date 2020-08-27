@@ -1,7 +1,7 @@
 <template>
   <b-card :title="name" :sub-title="address">
     <b-card-text class="mt-3 main-text">
-      <span class="phone h6"><v-icon name="phone-alt"></v-icon> {{phone}}</span>
+      <span class="phone h6"><fa icon="phone-alt"/> {{phone}}</span>
     </b-card-text>
     <b-form-rating v-model="rating" variant="warning" stars="5" inline readonly></b-form-rating>
   </b-card>

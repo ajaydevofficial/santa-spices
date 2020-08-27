@@ -71,4 +71,7 @@ export default {
   min-height: 0;
   height: 98vh;
 }
+svg{
+  vertical-align: 0;
+}
 </style>

@@ -97,6 +97,16 @@ body{
   color:  $sp-light !important;
 }
 
+.btn-danger {
+  color: #fff;
+  background-color: $sp-secondary !important;
+}
+
+.btn-success {
+  color: #fff;
+  background-color: $sp-primary !important;
+}
+
 /* Components*/
 
 .card{

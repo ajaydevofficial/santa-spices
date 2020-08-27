@@ -43,7 +43,7 @@ export default {
     { src: '@/plugins/firebase.js', mode: 'client'},
     { src: '@/plugins/fireauth.js', mode: 'client'},
     { src: '@/plugins/vue-notifications.js', mode: 'client'},
-    { src: '@/plugins/vue-awesome.js', mode: 'client'},
+    { src: '@/plugins/fontawesome.js', mode: 'client'},
   ],
   /*
   ** Auto import components

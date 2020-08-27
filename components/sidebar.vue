@@ -6,18 +6,18 @@
             <hr>
         </div>
         <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="main-bg active card shadow px-0" class="sidebar-item">
-            <v-icon class="icons" :name="nav.icon"/>
+            <fa class="icons" :icon="nav.icon"/>
             <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
         </b-nav-item>
         <b-nav-item @click="signOut" exact exact-active-class="main-bg active card shadow px-0" class="sidebar-item">
-            <v-icon class="icons" name="sign-out-alt"/>
+            <fa class="icons" icon="sign-out-alt"/>
             <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">Logout</span>
         </b-nav-item>
     </div>
     <div class="footer full-width text-center py-2">
         <b-button class="main-bg br-default active shadow" @click="toggleSidebar">
-            <v-icon v-if="sidebarIconSize" name="angle-right"/>
-            <v-icon v-if="!sidebarIconSize" name="angle-left"/>
+            <fa v-if="sidebarIconSize" icon="angle-right"/>
+            <fa v-if="!sidebarIconSize" icon="angle-left"/>
         </b-button>
     </div>
   </b-nav>
