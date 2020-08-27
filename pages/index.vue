@@ -1,7 +1,8 @@
 <template>
   <div>
-    <!-- <pt-header @toggleSideBar="setSideBarStatus"></pt-header> -->
+    <navbar class="navbar-main shadow" @toggleSideBar="setSideBarStatus"></navbar>
     <div class="main-section d-flex">
+      <fixed-sidebar></fixed-sidebar>
       <sidebar :class="{showSidebar: showSidebar,hideSidebar: !showSidebar}"></sidebar>
       <div class="layout-main d-flex">
         <nuxt-child></nuxt-child>
@@ -14,6 +15,8 @@
 <script>
 import sidebar from '~/components/sidebar.vue';
 import VueNotifications from 'vue-notifications';
+import navbar from '~/components/navbar.vue'
+
 export default {
   middleware: 'auth',
   mounted(){
@@ -48,15 +51,20 @@ export default {
 </script>
 
 <style lang="scss">
-.showSidebar{
-  transition: width 0.3s ease-in-out;
-  -webkit-transition: width 0.3s ease-in-out;
+.navbar-main{
+  z-index: 1000;
 }
-
+.showSidebar{
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all.3s ease-in-out;
+}
+.sidebar-module{
+  width: 175px;
+}
 .hideSidebar {
-  width: 85px;
-  transition: width 0.3s ease-in;
-  -webkit-transition: width 0.3s ease-in;
+  width: 0px !important;
+  transition: all 0.3s ease-in;
+  -webkit-transition: all 0.3s ease-in;
 }
 
 .layout-main {
@@ -70,8 +78,18 @@ export default {
 .main-section {
   min-height: 0;
   height: 98vh;
+  height: calc(100vh - 3.8rem);
 }
 svg{
   vertical-align: 0;
+  min-height: 15px;
+  min-width: 15px;
+}
+.hide{
+    transition: opacity 0.01s linear !important;
+    font-size: 0 !important;
+    margin-left: 0 !important;
+    opacity:0 !important;
+    display:block;
 }
 </style>

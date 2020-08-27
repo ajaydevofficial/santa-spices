@@ -30,13 +30,20 @@
 </template>
 
 <script>
+    import * as firebase from 'firebase';
+    
+
     export default {
-        name:'add-product-modal',
+        name:'delete-product-modal',
+        mounted(){
+
+        },
         data() {
             return {
                 productName: '',
                 productState: null,
-                invalidFeedback:''
+                invalidFeedback:'',
+                products = []
             }
         },
         methods: {

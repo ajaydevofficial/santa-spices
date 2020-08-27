@@ -1,5 +1,6 @@
 <template >
   <div class="product-container">
+    <add-product-modal ref="addProductModal"></add-product-modal>
     <b-card-group deck>
       <b-card header-tag="header" footer-tag="footer">
         <template v-slot:header>
@@ -12,15 +13,22 @@
                 </div>
             </div>
         </template>
+          <div class="text-center" v-if="products.length==0 && emptyProducts==false">
+            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
+            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
+            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
+          </div>
+          <div class="text-center" v-if="products.length==0 && emptyProducts==false">
+            No products added
+          </div>
           <b-list-group>
             <b-list-group-item v-for="item in products" v-bind:key="item.product" class="d-flex justify-content-between align-items-center">
               <span class="text-uppercase product">{{item.product}}</span>
             </b-list-group-item>
-          </b-list-group>
-              
+          </b-list-group>     
         <template v-slot:footer>
           <div class="row m-0">
-            <b-button variant="success" class="col-sm-6 border shadow p-2">
+            <b-button @click="add()" variant="success" class="col-sm-6 border shadow p-2">
               Add
             </b-button>
             <b-button variant="danger" class="col-sm-6 border shadow p-2">
@@ -35,20 +43,28 @@
 
 <script>
   import * as firebase from 'firebase';
+  import addProductModal from './add-product-modal'
+
 	export default {
       name: "products-card",
       mounted(){
           firebase.database().ref('products/').on('value',(data)=>{
             this.products = data.val();
+            if(this.products.length==0){
+              this.emptyProducts=true;
+            }
           })
       },
       data: function () {
         return{
-          products: []
+          products: [],
+          emptyProducts:false
         }
 		  },
       methods:{
-        
+        add(){
+          this.$refs.addProductModal.show();
+        },
       }
 	}
 </script>

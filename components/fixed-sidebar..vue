@@ -1,9 +1,9 @@
 <template>
-  <div class="sidebar-module bg-light">
-    <b-nav vertical class="sidebar full-width row m-0 justify-content-between px-0">
+  <div class="fixed-sidebar-module bg-dark">
+    <b-nav vertical class="fixed-sidebar full-width row m-0 justify-content-between">
       <div class="items">
-          <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="text-primary px-0" class="sidebar-item">
-              <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
+          <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="active px-0" class="fixed-sidebar-item">
+              <fa class="icons" :icon="nav.icon"/>
           </b-nav-item>
       </div>
     </b-nav>
@@ -12,7 +12,7 @@
 
 <script>
 	export default {
-	    name: "sidebar",
+	    name: "fixed-sidebar",
         data: function () {
             return {
 				    navs: [
@@ -22,8 +22,7 @@
                 { name: 'Vendors', icon: 'id-badge', url: '/vendors',key:4},
                 { name: 'Price Calculator', icon: 'calculator', url: '/calculator',key:5},
                 { name: 'Miscellaneous', icon: 'box-open', url: '/miscellaneous', key:6},
-            ],
-            sidebarIconSize: false
+            ]
         }
 		},
 		methods:{
@@ -36,38 +35,37 @@
 
    @import '~/assets/scss/_variables.scss';
 
-  .sidebar-module{
+  .fixed-sidebar-module{
       position : relative;
       height:100%;
-      box-shadow: 0px 7px 30px #bac1c7 !important;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -ms-flex-flow: column;
       flex-flow: column;
-      z-index: 1;
+      z-index: 2;
       flex: 0 0 auto;
       overflow: hidden;
       display: flex;
       padding: 0.5em 0;
 
-  .sidebar{
+  .fixed-sidebar{
     height: 100%;
   }
     .nav-link {
       display: list-item;
       align-items: center;
-      padding: 0.55em 0.5em !important;
+      padding: 0.5em 1em !important;
 
     }
-    .sidebar-text {
-      font-weight: 500;
+    .fixed-sidebar-text {
+      font-weight: 300;
       font-size: 15px;
       color:$sp-primary;
       transition: all 0.3s ease-in-out;
-      line-height: 15px;
+      margin-left: 10px;
     }
 
-    .sidebar-item {
+    .fixed-sidebar-item {
       width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -88,11 +86,16 @@
     }
 
     .nuxt-link-active {
-      .sidebar-text,
-      .sidebar-icon{
-        color:#007bff !important;
-        font-weight: 600;
+      .fixed-sidebar-text,
+      .icons{
+        color:#ffc107 !important;
       }
+    }
+    .icons{
+      width: 15px;
+      height: 15px;
+      color: white;
+      vertical-align: sub !important;
     }
     .large{
         width: 5em !important;

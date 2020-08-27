@@ -25,6 +25,8 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt'
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight'
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft'
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle'
+import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
 
 // You can add your icons directly in this plugin.
 library.add(
@@ -41,7 +43,9 @@ library.add(
     faSignOutAlt,
     faAngleRight,
     faAngleLeft,
-    faPhoneAlt
+    faPhoneAlt,
+    faPlusCircle,
+    faBars
 )
 
 // Register the component globally
