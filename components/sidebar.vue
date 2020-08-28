@@ -3,7 +3,7 @@
     <b-nav vertical class="sidebar full-width row m-0 justify-content-between px-0">
       <div class="items">
           <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="text-primary px-0" class="sidebar-item">
-              <span class="sidebar-text main-text" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
+              <span class="sidebar-text text-dark" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
           </b-nav-item>
       </div>
     </b-nav>

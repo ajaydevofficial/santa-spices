@@ -1,5 +1,5 @@
 <template>
-  <div class="vendor-card">
+  <div class="vendor-card shadow">
     <b-card :title="name" :sub-title="address">
       <b-card-text class="mt-3 main-text">
         <span class="phone h6"><fa icon="phone-alt"/> {{phone}}</span>

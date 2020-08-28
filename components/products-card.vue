@@ -1,12 +1,12 @@
 <template >
-  <div class="product-container">
+  <div class="product-container shadow">
     <add-product-modal ref="addProductModal"></add-product-modal>
     <b-card-group deck>
       <b-card header-tag="header" footer-tag="footer">
         <template v-slot:header>
           <div class="fit-content row align-items-center m-0">
-                <div class="main-text row m-0">
-                    <div class="card icon text-main mr-2 ml-0">
+                <div class="row m-0 text-dark">
+                    <div class="card icon mr-2 ml-0">
                         <fa class="" icon="id-badge"/>
                     </div>
                     <b class="m-auto">Products</b>
@@ -28,10 +28,10 @@
           </b-list-group>     
         <template v-slot:footer>
           <div class="row m-0">
-            <b-button @click="add()" variant="success" class="col-sm-6 border shadow p-2">
+            <b-button @click="add()" variant="primary" class="col-sm-6 p-2">
               Add
             </b-button>
-            <b-button variant="danger" class="col-sm-6 border shadow p-2">
+            <b-button variant="warning" class="col-sm-6 p-2">
               Delete
             </b-button>  
           </div>
@@ -73,7 +73,7 @@
   @import '~/assets/scss/_variables.scss';
   .product-container{
     .card{
-      border-radius: 0.5em !important;
+      border-radius: 0.3em !important;
       background-color: $sp-light;
       padding: 0 !important;
     }
@@ -87,6 +87,7 @@
     button{
       font-size: 14px !important;
       font-weight: 600;
+      border:none !important;
     }
     .product{
       font-weight: 500;

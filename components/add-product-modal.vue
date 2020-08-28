@@ -19,10 +19,10 @@
         </template>
 
         <template v-slot:modal-footer="{ ok, cancel }">
-            <b-button variant="success" @click="ok()">
+            <b-button variant="primary" @click="ok()">
                 Add product
             </b-button>
-            <b-button variant="danger" @click="cancel()">
+            <b-button variant="warning" @click="cancel()">
                 Cancel
             </b-button>
         </template>
