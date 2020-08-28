@@ -34,7 +34,7 @@
             <b-button variant="primary" @click="ok()">
                 Add vendor
             </b-button>
-            <b-button variant="warning" @click="cancel()">
+            <b-button variant="danger" @click="cancel()">
                 Cancel
             </b-button>
         </template>

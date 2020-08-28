@@ -31,7 +31,7 @@
             <b-button @click="add()" variant="primary" class="col-sm-6 p-2">
               Add
             </b-button>
-            <b-button variant="warning" class="col-sm-6 p-2">
+            <b-button variant="danger" class="col-sm-6 p-2">
               Delete
             </b-button>  
           </div>
