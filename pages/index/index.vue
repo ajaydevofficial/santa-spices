@@ -24,6 +24,7 @@
 
 <script>
 import productsCard from '~/components/products-card';
+import VueNotifications from 'vue-notifications';
 
 export default {
   middleware: 'auth',
@@ -34,6 +35,18 @@ export default {
   },
   methods: {
 
+  },
+  notifications: {
+        showSuccessMsg: {
+            type: VueNotifications.types.success,
+            title: 'Success',
+            message: ''
+        },
+        showError: {
+            type: VueNotifications.types.error,
+            title: 'Oops',
+            message: ''
+        }
   }
 }
 </script>

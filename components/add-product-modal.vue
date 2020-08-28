@@ -60,12 +60,17 @@
                     this.productState = false;
                 }
                 else{
-                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/addProductCategory',{
+                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/products',{
                         product:this.productName
                     }).then(()=>{
                         this.resetModal();
+                        this.hide();
+                        console.log(this.$parent)
+                        this.$parent.showSuccessMessage({message:"sucessfully added product"})
                     }).catch((error)=>{
-                        
+                        this.hide();
+                        console.log(this.$parent)
+                        this.$parent.showErrorMessage({message:"failed adding product"})
                     })
                     
                 }

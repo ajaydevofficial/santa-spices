@@ -49,9 +49,10 @@
       name: "products-card",
       mounted(){
           firebase.database().ref('products/').on('value',(data)=>{
-            this.products = data.val();
-            if(this.products.length==0){
-              this.emptyProducts=true;
+            this.products = data.val()?data.val():[]
+            if(this.products){
+              if(this.products.length==0)
+                this.emptyProducts=true;
             }
           })
       },
@@ -65,6 +66,12 @@
         add(){
           this.$refs.addProductModal.show();
         },
+        showSuccessMessage(message){
+          this.$parent.showSuccessMsg(message);
+        },
+        showErrorMessage(message){
+          this.$parent.showError(message);
+        }
       }
 	}
 </script>

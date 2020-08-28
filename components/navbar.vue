@@ -1,9 +1,9 @@
 <template>
   <div class="navbar-container">
   <b-navbar toggleable="lg" type="dark" variant="primary">
-    <div class="mr-2 pr-3" @click="toggleSidebar">
+    <b-button variant="primary" class="mr-2 pr-3" @click="toggleSidebar">
       <fa class="text-light" icon="bars"/>
-    </div>
+    </b-button>
     <b-navbar-brand>
       <img class="logo" src="~/assets/images/logo/logo-white.png">
     </b-navbar-brand>
