@@ -1,5 +1,5 @@
 <template>
-    <div class="full-width vendor-page">
+    <div class="vendor-page container">
         <add-vendor-modal ref="addVendor"></add-vendor-modal>
         <confirm-vendor-delete ref="confirmVendorDelete" :id="keyToDelete"></confirm-vendor-delete>
         <div class="row height-fit m-0 mt-3 full-width justify-content-between">
@@ -24,7 +24,7 @@
             </b-button>
         </div>
         <div class="row mx-0 my-4">
-            <div class="col-md-3 col-sm-12 pl-0">
+            <div class="col-md-3 col-sm-12 pl-0 vendor-card">
                 <vendor-card v-for="vendor in vendors" v-bind:key="vendor.key" :name="vendor.name" :address="vendor.address" :phone="vendor.phone" :rating="vendor.rating" :id="vendor.key"></vendor-card>
             </div>
         </div>
@@ -91,6 +91,9 @@ export default {
 
 <style lang="scss">
     .vendor-page{
+        .vendor-card{
+            cursor: pointer;
+        }
         button{
             svg{
                 width: 15px;

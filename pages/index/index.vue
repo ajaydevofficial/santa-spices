@@ -1,5 +1,5 @@
 <template>
-  <div class="full-width">
+  <div class="container">
     <div class="row height-fit m-0 mt-3 full-width justify-content-between">
         <div class="fit-content row align-items-center m-0">
             <div class="row m-0 text-dark">
@@ -10,7 +10,7 @@
             </div>
         </div>
     </div>
-    <div class="row mx-0 my-4">
+    <div class="row my-4 container">
       <div class="col-lg-3 col-md-5 col-sm-12 px-0">
             <products-card></products-card>
       </div>

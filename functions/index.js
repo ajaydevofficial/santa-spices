@@ -37,7 +37,7 @@ app.post('/products',(request, response) => {
 
 app.post('/vendors',(request, response) => {
   if(request.method !== "POST"){
-    response.send(405, 'HTTP Method ' +request.method+' not allowed');
+    response.send(405, 'HTTP Method ' +request.method + ' not allowed');
   }
   else{
     console.log(`Request: ${request.body}`);
@@ -46,6 +46,35 @@ app.post('/vendors',(request, response) => {
       response.send({
           status:200,
           message:"Successfully added new vendor"
+      })
+    }).catch((err)=>{
+        console.log(err)
+        response.send({
+            status:403,
+            message: err
+        })
+    })
+  }
+});
+
+app.post('/vendors/update',(request, response) => {
+  if(request.method !== "POST"){
+    response.send(405, 'HTTP Method ' +request.method + ' not allowed');
+  }
+  else{
+    console.log(`Request: ${request.body}`);
+    vendor = request.body;
+    console.log(vendor.id)
+    const update = {
+      name: vendor.name,
+      address: vendor.address,
+      phone: vendor.phone,
+    }
+    console.log(update)
+    admin.database().ref('vendors/'+ vendor.id).update(update).then(()=>{
+      response.send({
+          status:200,
+          message:"Successfully updated vendor"
       })
     }).catch((err)=>{
         console.log(err)

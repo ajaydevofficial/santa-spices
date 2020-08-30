@@ -14,7 +14,7 @@ config.autoAddCss = false
 import { faUser } from '@fortawesome/free-solid-svg-icons/faUser'
 import { faCalculator } from '@fortawesome/free-solid-svg-icons/faCalculator'
 import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus'
-import { faTrash } from '@fortawesome/free-solid-svg-icons/faTrash'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons/faTrashAlt'
 import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch'
 import { faHome } from '@fortawesome/free-solid-svg-icons/faHome'
 import { faCashRegister } from '@fortawesome/free-solid-svg-icons/faCashRegister'
@@ -27,13 +27,19 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft'
 import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons/faPhoneAlt'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle'
 import { faBars } from '@fortawesome/free-solid-svg-icons/faBars'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons/faMapMarkerAlt'
+import { faSmile } from '@fortawesome/free-solid-svg-icons/faSmile'
+import { faPencilAlt } from '@fortawesome/free-solid-svg-icons/faPencilAlt'
+import { faBook } from '@fortawesome/free-solid-svg-icons/faBook'
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
 
 // You can add your icons directly in this plugin.
 library.add(
     faUser,
     faCalculator,
     faPlus,
-    faTrash,
+    faTrashAlt,
     faSearch,
     faHome,
     faCashRegister,
@@ -45,7 +51,13 @@ library.add(
     faAngleLeft,
     faPhoneAlt,
     faPlusCircle,
-    faBars
+    faBars,
+    faMapMarkerAlt,
+    faSmile,
+    faPencilAlt,
+    faBook,
+    faCheck,
+    faTimes
 )
 
 // Register the component globally

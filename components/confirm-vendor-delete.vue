@@ -2,7 +2,7 @@
     <b-modal centered ref="deleteVendor" id="modal-scoped" @ok="handleOk">
         <template v-slot:modal-header>
             <div class="row m-0 align-items-center">
-                <fa icon="trash"/>
+                <fa icon="trash-alt"/>
                 <p class="ml-2">Confirm delete</p>
             </div>
         </template>

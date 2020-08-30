@@ -1,5 +1,5 @@
 <template>
-  <div class="vendor-card shadow">
+  <div class="vendor-card shadow" @click="redirect(id)">
     <b-card :title="name" :sub-title="address">
       <b-card-text class="mt-3 main-text">
         <span class="phone h6"><fa icon="phone-alt"/> {{phone}}</span>
@@ -24,6 +24,9 @@
       methods:{
         remove(id){
           this.$parent.remove(id);
+        },
+        redirect(key){
+          this.$router.push('/vendor-details?id='+key)
         }
       }
 	}
