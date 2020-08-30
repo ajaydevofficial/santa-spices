@@ -1,9 +1,9 @@
 <template>
-  <div class="sidebar-module bg-light">
+  <div class="sidebar-module bg-light small-shadow">
     <b-nav vertical class="sidebar full-width row m-0 justify-content-between px-0">
       <div class="items">
           <b-nav-item v-for="nav in navs" :key="nav.id" :to="nav.url" exact exact-active-class="text-primary px-0" class="sidebar-item">
-              <span class="sidebar-text text-dark" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
+              <span class="sidebar-text text-secondary" :class="{hide:sidebarIconSize}">{{nav.name}}</span>
           </b-nav-item>
       </div>
     </b-nav>
@@ -39,7 +39,6 @@
   .sidebar-module{
       position : relative;
       height:100%;
-      box-shadow: 0px 7px 30px #bac1c7 !important;
       -webkit-box-orient: vertical;
       -webkit-box-direction: normal;
       -ms-flex-flow: column;

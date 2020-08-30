@@ -92,4 +92,9 @@ svg{
     opacity:0 !important;
     display:block;
 }
+.b-rating{
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
 </style>

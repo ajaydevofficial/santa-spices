@@ -1,30 +1,30 @@
 <template>
-    <b-modal centered ref="addVendor" id="modal-scoped" @show="resetModal" @hidden="resetModal" @ok="handleOk">
+    <b-modal centered ref="addVendorRating" id="modal-scoped" @show="resetModal" @hidden="resetModal" @ok="handleOk">
         <template v-slot:modal-header>
             <div class="row m-0 align-items-center">
-                <fa icon="plus-circle"/>
-                <p class="ml-2">Add vendor</p>
+                <fa icon="smile"/>
+                <p class="ml-2">Add Rating</p>
             </div>
         </template>
 
         <template v-slot:default>
-            <form ref="addVendor" @submit.stop.prevent="handleSubmit">
-                <div class="row m-0 mt-2 align-items-center">
-                    <span class="col-sm-4 m-0">Name</span>
-                    <b-form-group  class="col-sm-8 m-0" :state="nameState" invalid-feedback="Name is required">
-                        <b-form-input id="name-input" v-model="name" :state="nameState" required></b-form-input>
+            <form @submit.stop.prevent="handleSubmit">
+                <div class="row m-0 mt-3 align-items-center">
+                    <span class="col-sm-4 m-0">Vendor Id</span>
+                    <b-form-group  class="col-sm-8 m-0">
+                        <span>{{vendorId}}</span>
                     </b-form-group>
                 </div>
-                <div class="row m-0 mt-2 align-items-center">
-                    <span class="col-sm-4 m-0">Address</span>
-                    <b-form-group  class="col-sm-8 m-0" :state="addressState" invalid-feedback="Address is required">
-                        <b-form-input id="address-input" v-model="address" :state="addressState" required></b-form-input>
+                <div class="row m-0 mt-3 align-items-center">
+                    <span class="col-sm-4 m-0">Rating</span>
+                    <b-form-group  class="col-sm-8 m-0">
+                        <b-form-rating v-model="rating" class="rating-inline" variant="warning" stars="5" inline show-value precision="2"></b-form-rating>
                     </b-form-group>
                 </div>
-                <div class="row m-0 mt-2 align-items-center">
-                    <span class="col-sm-4 m-0">Phone</span>
-                    <b-form-group  class="col-sm-8 m-0" :state="phoneState" invalid-feedback="Phone number is required">
-                        <b-form-input id="phone-input" v-model="phone" :state="phoneState" required></b-form-input>
+                <div class="row m-0 mt-3 align-items-center">
+                    <span class="col-sm-4 m-0">Remark</span>
+                    <b-form-group  class="col-sm-8 m-0" :state="remarkState" invalid-feedback="Remark is required">
+                        <b-form-textarea id="remark-input" v-model="remark" :state="remarkState" required rows="3"></b-form-textarea>
                     </b-form-group>
                 </div>
             </form>
@@ -32,7 +32,7 @@
 
         <template v-slot:modal-footer="{ ok, cancel }">
             <b-button variant="primary" @click="ok()">
-                Add vendor
+                Add Rating
             </b-button>
             <b-button variant="danger" @click="cancel()">
                 Cancel
@@ -43,31 +43,26 @@
 
 <script>
     export default {
-        name:'add-vendor-modal',
+        name:'add-vendor-rating',
+        props:['vendorId'],
         data() {
             return {
-                name: '',
-                address: '',
-                phone:'',
-                addressState:null,
-                nameState: null,
-                phoneState: null,
+                remark: '',
+                rating:0,
+                remarkState:null,
             }
         },
         methods: {
             show(){
-                this.$refs.addVendor.show()
+                this.$refs.addVendorRating.show()
             },
             hide(){
-                this.$refs.addVendor.hide()
+                this.$refs.addVendorRating.hide()
             },
             resetModal() {
-                this.name = ''
-                this.address =  ''
-                this.phone = ''
-                this.addressState = null
-                this.nameState = null
-                this.phoneState = null
+                this.rating = 0
+                this.remark =  ''
+                this.remarkState = null
             },
             handleOk(bvModalEvt) {
                 bvModalEvt.preventDefault();
@@ -75,54 +70,27 @@
             },
             handleSubmit() {
                 if(!this.checkError()){
-                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors',{
-                        name: this.name,
-                        address: this.address,
-                        phone:this.phone,
-                        rating:0
+                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors/add-rating',{
+                        id: this.vendorId,
+                        rating: this.rating,
+                        remark:this.remark
                     }).then(()=>{
                         this.resetModal();
-                        this.$parent.showSuccessMsg({message:"sucessfully added vendor"})
+                        this.$parent.$parent.$parent.showSuccessMsg({message:"sucessfully added rating"})
                         this.hide();
                     }).catch((error)=>{
-                        this.$parent.showError({message:"failed adding vendor"})
+                        this.$parent.$parent.$parent.showError({message:"failed adding rating"})
                         this.hide();
                     })
                 }
             },
             checkError(){
-                if(this.name==''){
-                    this.nameState = false;
-                    if(this.address!=''){
-                        this.addressState = true
-                    }
-                    if(this.phone != ''){
-                        this.phoneState = true;
-                    }
-                }
-                if(this.address == ''){
-                    this.addressState = false;
-                    if(this.name!=''){
-                        this.nameState = true
-                    }
-                    if(this.phone != ''){
-                        this.phoneState = true;
-                    }
-                }
-                if(this.phone ==''){
-                    this.phoneState = false;
-                    if(this.address!=''){
-                        this.addressState = true
-                    }
-                    if(this.name != ''){
-                        this.nameState = true;
-                    }
-                }
-                if(this.phoneState!=false && this.addressState!=false && this.nameState != false){
-                    return false;
+                if(this.remark==''){
+                    this.remarkState = false;
+                    return true
                 }
                 else{
-                    return true;
+                    return false
                 }
             }
         }

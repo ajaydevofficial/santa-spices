@@ -3,7 +3,7 @@
         <div class="height-fit m-0 mt-3 full-width justify-content-between">
             <div class="fit-content row align-items-center m-0">
                 <div class="main-text row m-0 text-dark">
-                    <div class="card icon mr-2 shadow">
+                    <div class="card icon mr-2 small-shadow">
                         <fa class="" icon="book"/>
                     </div>
                     <b class="m-auto">Vendor Details</b>

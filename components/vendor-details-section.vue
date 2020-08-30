@@ -1,5 +1,6 @@
 <template>
     <b-card class="nav-card small-shadow" no-body>
+        <add-vendor-rating :vendorId="id" ref="addRating"></add-vendor-rating>
         <b-tabs card>
             <b-tab title="Profile" active>
                 <div class="vendor-details-section">
@@ -60,7 +61,7 @@
                         </b-col>
                     </b-row>
                     <div class="row mx-0 my-2 align-items-center">
-                        <b-button class="mr-2" variant="primary">
+                        <b-button class="mr-2" variant="primary" @click="addVendorRating()">
                             <fa class="button-icon" icon="plus-circle"/>
                             <span class="button-text">Add rating</span>
                         </b-button>
@@ -91,10 +92,10 @@
 
 <script>
 import * as firebase from 'firebase';
+import vendorRatingModal from '~/components/add-vendor-rating.vue';
 
 export default {
     name: 'vendor-details-section',
-    props: ['id'],
     mounted(){
         if(this.$route.query.id){
             firebase.database().ref('vendors/'+this.$route.query.id).on('value',(data)=>{
@@ -104,6 +105,7 @@ export default {
                 this.address = vendor.address;
                 this.phone = vendor.phone;
                 this.rating = vendor.rating;
+                this.id = this.$route.query.id;
             },(error) => {
                 this.$parent.$parent.showError({message:"failed fetching vendor details"})
             })
@@ -118,7 +120,8 @@ export default {
             address:'',
             phone:'',
             rating:0,
-            editEnabled:false
+            editEnabled:false,
+            id:''
         }
     },
     methods: {
@@ -144,6 +147,9 @@ export default {
             this.name = this.snapshot.name;
             this.address = this.snapshot.address;
             this.phone = this.snapshot.phone;
+        },
+        addVendorRating(){
+            this.$refs.addRating.show();
         }
     }
 }

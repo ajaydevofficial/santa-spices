@@ -1,5 +1,5 @@
 <template >
-  <div class="product-container shadow">
+  <div class="product-container small-shadow">
     <add-product-modal ref="addProductModal"></add-product-modal>
     <b-card-group deck>
       <b-card header-tag="header" footer-tag="footer">
@@ -81,7 +81,6 @@
   .product-container{
     .card{
       border-radius: 0.3em !important;
-      background-color: $sp-light;
       padding: 0 !important;
     }
     .card-body{

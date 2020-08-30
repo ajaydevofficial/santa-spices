@@ -1,5 +1,5 @@
 <template>
-  <div class="vendor-card shadow" @click="redirect(id)">
+  <div class="vendor-card small-shadow" @click="redirect(id)">
     <b-card :title="name" :sub-title="address">
       <b-card-text class="mt-3 main-text">
         <span class="phone h6"><fa icon="phone-alt"/> {{phone}}</span>
@@ -42,17 +42,13 @@
     .b-rating{
       border:none !important;
       padding: 0;
-      background-color: $sp-light;
-    }
-    .b-rating:focus{
-      background-color: $sp-light;
+      background:none !important;
     }
     .b-rating-star{
       padding-left: 0;
     }
     .card{
       border-radius: 0.5em !important;
-      background-color: $sp-light;
     }
     .btn{
       font-weight: 600;
