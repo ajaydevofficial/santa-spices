@@ -1,9 +1,14 @@
 <template>
     <b-card class="nav-card small-shadow" no-body>
-        <add-vendor-rating :vendorId="id" ref="addRating"></add-vendor-rating>
+        <add-vendor-rating :vendorId="id" :currentRating="rating" ref="addRating"></add-vendor-rating>
         <b-tabs card>
             <b-tab title="Profile" active>
-                <div class="vendor-details-section">
+                <div class="text-center" v-if="!profileLoaded">
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                </div>
+                <div class="vendor-details-section" v-if="profileLoaded">
                     <b-row class="my-2 align-items-center">
                         <b-col sm="3">
                             <label for="name" class="d-inline-flex m-0 align-items-center">
@@ -84,7 +89,14 @@
                 <b-card-text>Tab contents 2</b-card-text>
             </b-tab>
             <b-tab title="Remarks">
-                <b-card-text>Tab contents 3</b-card-text>
+                <div class="text-center" v-if="!remarksLoaded">
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                    <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+                </div>
+                <div class="full-width">
+                    <b-table striped hover :items="remarks" :fields="remarkFields"></b-table>
+                </div>
             </b-tab>
         </b-tabs>
     </b-card>
@@ -98,16 +110,28 @@ export default {
     name: 'vendor-details-section',
     mounted(){
         if(this.$route.query.id){
-            firebase.database().ref('vendors/'+this.$route.query.id).on('value',(data)=>{
+            const key = this.$route.query.id;
+            firebase.database().ref('vendors/' + key).on('value',(data)=>{
                 const vendor = data.val();
                 this.snapshot = vendor;
                 this.name = vendor.name;
                 this.address = vendor.address;
                 this.phone = vendor.phone;
                 this.rating = vendor.rating;
-                this.id = this.$route.query.id;
+                this.id = key;
+                this.profileLoaded = true;
             },(error) => {
                 this.$parent.$parent.showError({message:"failed fetching vendor details"})
+            })
+
+            firebase.database().ref('remarks/'+ key).on('value',(data)=>{
+                data.forEach((item)=>{
+                    this.remarks.push(item.val())
+                })
+                this.remarksLoaded = true;
+                console.log(this.remarks)
+            },(error)=>{
+                this.$parent.$parent.showError({message:"failed fetching remarks"})
             })
         }else{
             this.$router.push('/404')
@@ -121,7 +145,15 @@ export default {
             phone:'',
             rating:0,
             editEnabled:false,
-            id:''
+            id:'',
+            remarks:[],
+            remarkFields:[
+                { key: 'datetime', label:'Date', sortable: true },
+                { key: 'remark', label:'Remarks', sortable: false },
+                { key: 'rating',label:'Rating', sortable: false },
+            ],
+            remarksLoaded:false,
+            profileLoaded:false
         }
     },
     methods: {
@@ -161,6 +193,7 @@ export default {
         #rating-inline{
             background: none !important;
             border: none !important;
+            padding: 0.375rem 0.75rem !important;
         }
         .default{
             background: none !important;

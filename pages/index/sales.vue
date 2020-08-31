@@ -6,7 +6,7 @@
                 <div class="card icon mr-2 small-shadow">
                     <fa class="" icon="fire-alt"/>
                 </div>
-                <b class="m-auto">Drying Details</b>
+                <b class="m-auto">Sales</b>
             </div>
         </div>
         <div class="fit-content">

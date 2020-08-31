@@ -44,7 +44,7 @@
 <script>
     export default {
         name:'add-vendor-rating',
-        props:['vendorId'],
+        props:['vendorId','currentRating'],
         data() {
             return {
                 remark: '',
@@ -72,7 +72,7 @@
                 if(!this.checkError()){
                     $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors/add-rating',{
                         id: this.vendorId,
-                        rating: this.rating,
+                        rating: (this.rating + this.currentRating)/2,
                         remark:this.remark
                     }).then(()=>{
                         this.resetModal();

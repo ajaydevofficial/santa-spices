@@ -14,9 +14,9 @@
             </div>
         </template>
           <div class="text-center" v-if="products.length==0 && emptyProducts==false">
-            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
-            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
-            <b-spinner small class="m-2" type="grow" label="Spinning"></b-spinner>
+            <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+            <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
+            <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
           </div>
           <div class="text-center" v-if="products.length==0 && emptyProducts==false">
             No products added

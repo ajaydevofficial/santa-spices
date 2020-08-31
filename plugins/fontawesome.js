@@ -33,6 +33,7 @@ import { faPencilAlt } from '@fortawesome/free-solid-svg-icons/faPencilAlt'
 import { faBook } from '@fortawesome/free-solid-svg-icons/faBook'
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck'
 import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes'
+import { faEye } from '@fortawesome/free-solid-svg-icons/faEye'
 
 // You can add your icons directly in this plugin.
 library.add(
@@ -57,7 +58,8 @@ library.add(
     faPencilAlt,
     faBook,
     faCheck,
-    faTimes
+    faTimes,
+    faEye
 )
 
 // Register the component globally

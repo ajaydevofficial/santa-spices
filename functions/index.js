@@ -86,4 +86,42 @@ app.post('/vendors/update',(request, response) => {
   }
 });
 
+app.post('/vendors/add-rating',(request, response) => {
+  if(request.method !== "POST"){
+    response.send(405, 'HTTP Method ' +request.method + ' not allowed');
+  }
+  else{
+    const data = request.body;
+    const datetime = new Date().toISOString();
+    const payload = {
+      rating:data.rating
+    }
+    const remarks = {
+      datetime:datetime,
+      rating:data.rating,
+      remark:data.remark,
+    }
+    admin.database().ref('vendors/' + data.id).update(payload).then(()=>{
+      admin.database().ref('remarks/' + data.id + '/').push(remarks).then(()=>{
+        response.send({
+            status:200,
+            message:"Successfully added remarks"
+        })
+      }).catch((err)=>{
+        console.log(err)
+        response.send({
+            status:403,
+            message: err
+        })
+      })
+    }).catch((err)=>{
+        console.log(err)
+        response.send({
+            status:403,
+            message: err
+        })
+    })
+  }
+});
+
 exports.widgets = functions.https.onRequest(app);

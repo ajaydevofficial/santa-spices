@@ -6,7 +6,7 @@
                 <div class="card icon mr-2 small-shadow">
                     <fa class="" icon="cash-register"/>
                 </div>
-                <b class="m-auto">Purchase Details</b>
+                <b class="m-auto">Purchase</b>
             </div>
         </div>
         <div class="fit-content">
@@ -15,6 +15,16 @@
             </div>
         </div>
     </div>
+    <b-card class="nav-card small-shadow my-3" no-body>
+        <b-tabs card>
+            <b-tab title="New purchase" active>
+                
+            </b-tab>
+            <b-tab title="All purchases">
+                
+            </b-tab>
+        </b-tabs>
+    </b-card>
   </div>
 </template>
 
