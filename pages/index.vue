@@ -80,11 +80,6 @@ export default {
   height: 98vh;
   height: calc(100vh - 3.8rem);
 }
-svg{
-  vertical-align: 0;
-  min-height: 15px;
-  min-width: 15px;
-}
 .hide{
     transition: opacity 0.01s linear !important;
     font-size: 0 !important;
