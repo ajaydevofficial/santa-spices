@@ -44,6 +44,7 @@ export default {
     { src: '@/plugins/fireauth.js', mode: 'client'},
     { src: '@/plugins/vue-notifications.js', mode: 'client'},
     { src: '@/plugins/fontawesome.js', mode: 'client'},
+    { src: '@/plugins/json-excel.js', mode: 'client'},
   ],
   /*
   ** Auto import components

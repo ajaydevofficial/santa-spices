@@ -124,4 +124,25 @@ app.post('/vendors/add-rating',(request, response) => {
   }
 });
 
+app.post('/purchase/add',(request, response) => {
+  if(request.method !== "POST"){
+    response.send(405, 'HTTP Method ' +request.method + ' not allowed');
+  }
+  else{
+    const purchase = request.body;
+    admin.database().ref('purchases/').push(purchase).then(()=>{
+      response.send({
+          status:200,
+          message:"Successfully added purchase entry"
+      })
+    }).catch((err)=>{
+        console.log(err)
+        response.send({
+            status:403,
+            message: err
+        })
+    })
+  }
+});
+
 exports.widgets = functions.https.onRequest(app);
