@@ -20,8 +20,8 @@
                 { name: 'Purchase', icon: 'cash-register', url: '/purchase',key:2},
                 { name: 'Sales', icon: 'fire-alt', url: '/sales',key:3},
                 { name: 'Vendors', icon: 'id-badge', url: '/vendors',key:4},
-                { name: 'Price Calculator', icon: 'calculator', url: '/calculator',key:5},
-                { name: 'Miscellaneous', icon: 'box-open', url: '/miscellaneous', key:6},
+                { name: 'Production & Stock', icon: 'calculator', url: '/production-and-stock',key:5},
+                { name: 'Expenses', icon: 'box-open', url: '/expenses', key:6},
             ],
             sidebarIconSize: false
         }

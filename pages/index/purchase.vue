@@ -53,7 +53,7 @@
                         <label for="input-default">Lot number</label>
                       </b-col>
                       <b-col sm="10">
-                        <b-form-input type="number" size="sm" v-model="lotNumber"></b-form-input>
+                        <b-form-input disabled type="number" size="sm" v-model="lotNumber"></b-form-input>
                       </b-col>
                   </b-row>
                   <b-row class="my-2 align-items-center">
@@ -113,6 +113,9 @@ import * as firebase from 'firebase';
 export default {
   middleware: 'auth',
   mounted(){
+    firebase.database().ref('lotCount').on('value',(data)=>{
+      this.lotNumber = data.val()
+    })
     firebase.database().ref('products/').on('value',(data)=>{
       var array = data?data:[]
       if(array){
@@ -180,11 +183,10 @@ export default {
       this.selectedVendor = null;
       this.purchaseRate = 0;
       this.quantity = 0;
-      this.lotNumber = 0;
       this.remarks = '';
     },
     async addPurchase(){
-      if(!this.selectedDate || !this.selectedProduct || !this.selectedVendor || !this.purchaseRate || !this.quantity || !this.lotNumber){
+      if(!this.selectedDate || !this.selectedProduct || !this.selectedVendor || !this.purchaseRate || !this.quantity){
         this.$parent.showError({message: 'Please fill all values'})
       }else{
         this.getVendorName(this.vendors,this.selectedVendor).then((vendorName)=>{
@@ -196,12 +198,15 @@ export default {
             vendor_name: vendorName,
             lot_number: this.lotNumber,
             purchase_rate: this.purchaseRate,
-            remarks: this.remarks
+            remarks: this.remarks,
+            inStock: true
           }
-          $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/purchase/add', payload).then(()=>{
+          firebase.database().ref('purchases/').push(payload).then(()=>{
             this.clear();
+            var lot = this.lotNumber + 1;
+            firebase.database().ref('lotCount').set(lot)
             this.$parent.showSuccessMsg({message: 'Added new purchase'});
-          }).catch((err)=>{
+          },(error)=>{
             this.$parent.showError({message: 'Something went wrong please try later'});
           })
         }).catch((err)=>{

@@ -24,8 +24,8 @@
             </b-button>
         </div>
         <div class="row mx-0 my-4">
-            <div class="col-md-3 col-sm-12 pl-0 vendor-card">
-                <vendor-card v-for="vendor in vendors" v-bind:key="vendor.key" :name="vendor.name" :address="vendor.address" :phone="vendor.phone" :rating="vendor.rating" :id="vendor.key"></vendor-card>
+            <div class="col-sm-12 col-md-3 pl-0 vendor-card-col" v-for="vendor in vendors" v-bind:key="vendor.key">
+                <vendor-card  :name="vendor.name" :address="vendor.address" :phone="vendor.phone" :rating="vendor.rating" :id="vendor.key"></vendor-card>
             </div>
         </div>
     </div>
@@ -91,7 +91,8 @@ export default {
 
 <style lang="scss">
     .vendor-page{
-        .vendor-card{
+        .vendor-card-col{
+            height: auto !important;
             cursor: pointer;
         }
         button{

@@ -5,14 +5,16 @@
         <span class="phone h6"><fa icon="phone-alt"/> {{phone}}</span>
       </b-card-text>
       <b-form-rating v-model="rating" variant="warning" stars="5" inline readonly></b-form-rating><br>
-      <b-button @click="redirect(id)" variant="success">
-        <fa class="button-icon" icon="eye"/>
-        <span class="button-text">View</span>
-      </b-button>
-      <b-button variant="danger" @click="remove(id)">
-        <fa class="button-icon" icon="trash-alt"/>
-        <span class="button-text">Remove</span>
-      </b-button>
+      <template v-slot:footer>
+        <b-button @click="redirect(id)" variant="success">
+          <fa class="button-icon" icon="eye"/>
+          <span class="button-text">View</span>
+        </b-button>
+        <b-button variant="danger" @click="remove(id)">
+          <fa class="button-icon" icon="trash-alt"/>
+          <span class="button-text">Remove</span>
+        </b-button>
+      </template>
     </b-card>
   </div>
 </template>
@@ -54,9 +56,15 @@
     }
     .card{
       border-radius: 0.5em !important;
+      height: 100%;
     }
     .btn{
       font-weight: 600;
+    }
+    height:100%;
+    .card-footer{
+      background: none !important;
+      border:none !important
     }
   }
 </style>

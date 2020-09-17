@@ -6,7 +6,7 @@
                     <div class="card icon mr-2 small-shadow">
                         <fa class="" icon="box-open"/>
                     </div>
-                    <b class="m-auto">Miscellaneous</b>
+                    <b class="m-auto">Expenses</b>
                 </div>
             </div>
             <div class="fit-content">

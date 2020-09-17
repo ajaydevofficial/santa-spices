@@ -86,7 +86,22 @@
                 </div>
             </b-tab>
             <b-tab title="History">
-                <b-card-text>Tab contents 2</b-card-text>
+                <div class="row height-fit m-0 mb-3 full-width justify-content-end">
+                    <div class="fit-content row m-0">
+                        <div class="main-text d-flex m-0 mr-2">
+                            <b-form-input type="date" size="sm" v-model="searchDate"></b-form-input>
+                        </div>
+                        <b-button @click="clearDate()" variant="danger" size="sm" class="button-with-icon mr-2">
+                            <fa icon="broom"/>
+                            <span class="button-text"> Clear filter</span>
+                        </b-button>
+                        <download-excel class="btn btn-success button-with-icon" :data="filterByDate(purchases,searchDate)">
+                            <fa icon="download"/>
+                            <span class="button-text"> Export</span>
+                        </download-excel>
+                    </div>
+                </div>
+                <b-table small :filter="searchDate" striped hover :items="purchases" :fields="purchaseFields"></b-table>
             </b-tab>
             <b-tab title="Remarks">
                 <div class="text-center" v-if="!remarksLoaded">
@@ -95,7 +110,7 @@
                     <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
                 </div>
                 <div class="full-width">
-                    <b-table striped hover :items="remarks" :fields="remarkFields"></b-table>
+                    <b-table small striped hover :items="remarks" :fields="remarkFields"></b-table>
                 </div>
             </b-tab>
         </b-tabs>
@@ -133,6 +148,18 @@ export default {
             },(error)=>{
                 this.$parent.$parent.showError({message:"failed fetching remarks"})
             })
+
+            firebase.database().ref('purchases/').on('value',(data)=>{
+                this.purchases = []
+            data.forEach((item)=>{
+                var value = item.val()
+                if(value.vendor_id == key){
+                    value['key'] = item.key;
+                    this.purchases.push(value);
+                }
+            })
+            console.log(this.purchases)
+            })
         }else{
             this.$router.push('/404')
         }
@@ -146,6 +173,7 @@ export default {
             rating:0,
             editEnabled:false,
             id:'',
+            searchDate:null,
             remarks:[],
             remarkFields:[
                 { key: 'datetime', label:'Date', sortable: true },
@@ -153,7 +181,17 @@ export default {
                 { key: 'rating',label:'Rating', sortable: false },
             ],
             remarksLoaded:false,
-            profileLoaded:false
+            profileLoaded:false,
+            purchases:[],
+            purchaseFields: [
+                { key: 'date', label:'Date', sortable: true },
+                { key: 'product',label:'Product', sortable: false },
+                { key: 'vendor_name',label:'Vendor', sortable: false },
+                { key: 'quantity',label:'Quantity(kg)', sortable: false },
+                { key: 'lot_number',label:'Lot number', sortable: false },
+                { key: 'purchase_rate',label:'Purchase rate(₹)', sortable: false },
+                { key: 'remarks', label:'Remarks', sortable: false },
+            ]
         }
     },
     methods: {
@@ -182,6 +220,22 @@ export default {
         },
         addVendorRating(){
             this.$refs.addRating.show();
+        },
+        clearDate(){
+            this.searchDate = null;
+        },
+        filterByDate(list,date){
+            if(date){
+                var result = []
+                list.forEach((item)=>{
+                if(item.date==date){
+                    result.push(item)
+                }
+                })
+                return result;
+            }else{
+                return list;
+            }
         }
     }
 }

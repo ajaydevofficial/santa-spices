@@ -22,8 +22,10 @@ import { BFormTextarea} from 'bootstrap-vue/esm/components/form-textarea';
 import { VBToggle} from 'bootstrap-vue/esm/directives/toggle';
 import { VBTooltip} from 'bootstrap-vue/esm/directives/tooltip';
 import { BFormSelect } from "bootstrap-vue/esm/components/form-select";
-import { BFormDatepicker } from 'bootstrap-vue/esm';
+import { BFormDatepicker, BFormTag, BFormTags } from 'bootstrap-vue/esm';
+import { FormTagsPlugin } from 'bootstrap-vue'
 
+Vue.use(FormTagsPlugin)
 
 Vue.component('b-table', BTable);
 Vue.component('b-modal', BModal);
@@ -52,4 +54,3 @@ Vue.component('b-form-select', BFormSelect);
 Vue.directive('b-toggle', VBToggle);
 Vue.directive('b-tooltip', VBTooltip);
 Vue.directive('b-form-datepicker',BFormDatepicker)
-
