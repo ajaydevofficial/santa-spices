@@ -42,6 +42,9 @@
 </template>
 
 <script>
+
+import * as firebase from 'firebase';
+
     export default {
         name:'add-vendor-modal',
         data() {
@@ -75,7 +78,7 @@
             },
             handleSubmit() {
                 if(!this.checkError()){
-                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors',{
+                    firebase.database().ref('vendors/').push({
                         name: this.name,
                         address: this.address,
                         phone:this.phone,

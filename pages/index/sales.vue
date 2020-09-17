@@ -77,7 +77,8 @@
                         <label for="input-default">Batch number</label>
                       </b-col>
                       <b-col sm="10">
-                        <b-form-input type="number" size="sm" v-model="batchNumber"></b-form-input>
+                        <!-- <b-form-input type="number" size="sm" v-model="batchNumber"></b-form-input> -->
+                        <b-form-select size="sm" v-model="batchNumber" :options="productions"></b-form-select>
                       </b-col>
                   </b-row>
                   <b-row class="my-2 align-items-center">
@@ -157,6 +158,25 @@ export default {
         })
       }
     })
+    firebase.database().ref('production/').on('value',(data)=>{
+      var array = data?data:[]
+      this.productions = [{
+          text:"Select Batch",
+          value:null
+      }]
+      if(array){
+        array.forEach(product=>{
+            var val = product.val();
+            val['key'] = product.key;
+            if(!val.sold){
+                val['text'] = val.batch_number;
+                val['value'] = val.batch_number; 
+                this.productions.push(val)
+            }
+        })
+        console.log(this.productions)
+      }
+    })
     firebase.database().ref('sales/').on('value',(data)=>{
       this.sales = []
       data.forEach((item)=>{
@@ -179,12 +199,16 @@ export default {
       phone:null,
       place:null,
       email:null,
-      batchNumber:0,
+      batchNumber:null,
       customer: '',
       vendors: [{text:'Select Vendor', value:null, disabled:true}],
       remarks:'',
       loaded: false,
       sales:[],
+      productions:[{
+          text:"Select Batch",
+          value:null
+      }],
       salesFields: [
         { key: 'date', label:'Date', sortable: true },
         { key: 'product',label:'Product', sortable: false },
@@ -207,7 +231,7 @@ export default {
       this.customer = null;
       this.saleRate = 0;
       this.quantity = 0;
-      this.batchNumber = 0;
+      this.batchNumber = null;
       this.phone = null;
       this.email = null;
       this.place = null;
@@ -231,6 +255,11 @@ export default {
             }
             try {
                 firebase.database().ref('sales/').push(payload).then(()=>{
+                    var key = this.getKey(this.batchNumber).then((key)=>{
+                        firebase.database().ref('production/'+key).update({
+                            sold:true
+                        })
+                    })
                     this.clear();
                     this.$parent.showSuccessMsg({message: 'Added new sale'});
                 },(err)=>{
@@ -256,6 +285,19 @@ export default {
       }else{
         return list;
       }
+    },
+    getKey(batch){
+        return new Promise((resolve,reject)=>{
+            try {
+                this.productions.forEach((element)=>{
+                    if(Number(element.batch_number) == Number(batch)){
+                        return resolve(element.key);
+                    }
+                })
+            } catch (error) {
+                return reject(error);
+            }
+        })
     }
   }
 }

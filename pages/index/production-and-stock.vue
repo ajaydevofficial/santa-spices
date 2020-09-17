@@ -297,7 +297,8 @@ export default {
                 quantity_after: this.quantityAfter,
                 batch_number: this.batchNumber,
                 lots: this.lots,
-                remarks: this.remarks
+                remarks: this.remarks,
+                sold:false
             }
             try {
                 firebase.database().ref('production/').push(payload).then(()=>{

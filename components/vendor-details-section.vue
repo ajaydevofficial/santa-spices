@@ -200,17 +200,18 @@ export default {
         },
         save(name,address,phone){
             this.editEnabled = false;
+            const id = this.$route.query.id
             const payload = {
-                id: this.$route.query.id,
                 name: this.name,
                 address: this.address,
                 phone: this.phone
             }
-            $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors/update',payload).then((res)=>{
-                this.$parent.$parent.showSuccessMsg({message:"updated vendor details"})
+            firebase.database().ref('vendors/'+ id).update(payload).then(()=>{
+                this.$parent.$parent.showSuccessMsg({message:'Updated vendor'})
             }).catch((err)=>{
-                this.$parent.$parent.showError({message:"editing vendor failed please try again"})
+                this.$parent.$parent.showError({message:'Failed to update vendor'})
             })
+            
         },
         cancel(){
             this.editEnabled = false;

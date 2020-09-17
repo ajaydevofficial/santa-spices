@@ -24,6 +24,9 @@
           <b-list-group>
             <b-list-group-item v-for="item in products" v-bind:key="item.product" class="d-flex justify-content-between align-items-center">
               <span class="text-uppercase product">{{item.product}}</span>
+              <button @click="removeProduct(item)" class="btn btn-default">
+                <fa icon="trash-alt"/>
+              </button>
             </b-list-group-item>
           </b-list-group>     
         <template v-slot:footer>
@@ -49,7 +52,13 @@
       name: "products-card",
       mounted(){
           firebase.database().ref('products/').on('value',(data)=>{
-            this.products = data.val()?data.val():[]
+            this.products = []
+            var val = data?data:[];
+            val.forEach((product)=>{
+              var item = product.val()
+              item['key']= product.key;
+              this.products.push(item);
+            })
             if(this.products){
               if(this.products.length==0)
                 this.emptyProducts=true;
@@ -71,6 +80,13 @@
         },
         showErrorMessage(message){
           this.$parent.showError(message);
+        },
+        removeProduct(item){
+          firebase.database().ref('products/'+ item.key).remove().then(()=>{
+            this.showSuccessMessage({message: 'Removed '+ item.product.toUpperCase()});
+          },(err)=>{
+            this.showErrorMessage({message: 'Failed to remove product'})
+          })
         }
       }
 	}
@@ -94,6 +110,10 @@
       font-size: 14px !important;
       font-weight: 600;
       border:none !important;
+      svg{
+        width: 12px !important;
+        height:12px !important;
+      }
     }
     .product{
       font-weight: 500;

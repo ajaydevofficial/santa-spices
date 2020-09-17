@@ -42,6 +42,9 @@
 </template>
 
 <script>
+
+import * as firebase from 'firebase';
+
     export default {
         name:'add-vendor-rating',
         props:['vendorId','currentRating'],
@@ -70,15 +73,25 @@
             },
             handleSubmit() {
                 if(!this.checkError()){
-                    $nuxt.$axios.post('https://us-central1-santa-spices.cloudfunctions.net/widgets/vendors/add-rating',{
-                        id: this.vendorId,
-                        rating: (this.rating + this.currentRating)/2,
-                        remark:this.remark
+                    const data = {
+                        datetime: new Date().toISOString(),
+                        rating: this.rating,
+                        remark: this.remark
+                    }
+                    firebase.database().ref('vendors/' + this.vendorId).update({
+                        rating: (this.rating + this.currentRating)/2
                     }).then(()=>{
-                        this.resetModal();
-                        this.$parent.$parent.$parent.showSuccessMsg({message:"sucessfully added rating"})
-                        this.hide();
+                        firebase.database().ref('remarks/' + this.vendorId + '/').push(data).then(()=>{
+                            this.resetModal();
+                            this.$parent.$parent.$parent.showSuccessMsg({message:"sucessfully added rating"})
+                            this.hide();
+                        }).catch((err)=>{
+                            this.resetModal();
+                            this.$parent.$parent.$parent.showError({message:"failed adding rating"})
+                            this.hide();
+                        })
                     }).catch((error)=>{
+                        this.resetModal();
                         this.$parent.$parent.$parent.showError({message:"failed adding rating"})
                         this.hide();
                     })
