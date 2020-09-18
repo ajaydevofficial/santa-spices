@@ -6,7 +6,7 @@
                 <img class="logo my-2" src="../assets/images/logo/logo.png"> 
                 <b-form-input class="form-control my-2" v-model="email" id="email" type="email" placeholder="you@provider.com"></b-form-input>
                 <b-form-input class="form-control my-2" v-model="password" id="password" type="password" placeholder="************"></b-form-input>
-                <button @click="login()" class="form-control btn primary-bg my-1 light-text proxima-bold">Login</button>
+                <button @click="login()" class="form-control btn btn-primary my-1 light-text proxima-bold">Login</button>
             </div>
         </div>
     </div>

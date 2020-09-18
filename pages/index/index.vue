@@ -10,12 +10,24 @@
             </div>
         </div>
     </div>
-    <div class="row my-4 container">
-      <div class="col-lg-3 col-md-5 col-sm-12 px-0">
-            <products-card></products-card>
+    <div class="">
+      <div class="row my-3 m-0 justify-content-start">
+        <div class="card small-shadow">
+          <b-form-input @change="update()" v-model="date" type="date" class="fit-content"></b-form-input>
+        </div>
       </div>
-      <div class="col-lg-9 col-md-7 col-sm-12">
-          
+      <div class="row my-4">
+        <div class="col-lg-5 col-sm-12 pr-0">
+            <stock-card class="mb-3"></stock-card>
+            <processed-card class="mb-3"></processed-card>
+        </div>
+        <div class="col-lg-4 col-sm-12 pr-0">
+            <spend-card class="mb-3" :key="date" :date="date"></spend-card>
+            <sales-card class="mb-3" :key="date" :date="date"></sales-card>
+        </div>
+        <div class="col-lg-3 col-sm-12 pr-0">
+              <products-card></products-card>
+        </div>
       </div>
     </div>
   </div>
@@ -24,17 +36,23 @@
 
 <script>
 import productsCard from '~/components/products-card';
+import stockCard from '~/components/stock-card';
+import spendCard from '~/components/spend-card';
+import saleCard from '~/components/sales-card';
 import VueNotifications from 'vue-notifications';
 
 export default {
   middleware: 'auth',
   data: function() {
     return {
-      text:''
+      text:'',
+      date: new Date().toISOString().split('T')[0]
     }
   },
   methods: {
-
+    update(){
+      this.$forceUpdate()
+    }
   },
   notifications: {
         showSuccessMsg: {

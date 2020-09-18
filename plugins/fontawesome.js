@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { library, config } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { fas, faBroom, faDownload } from '@fortawesome/free-solid-svg-icons'
+import { fas, faBroom, faDownload, faBox, faBarcode, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 // This is important, we are going to let Nuxt.js worry about the CSS
 config.autoAddCss = false
@@ -61,7 +61,10 @@ library.add(
     faTimes,
     faEye,
     faBroom,
-    faDownload
+    faDownload,
+    faBox,
+    faBarcode,
+    faDollarSign
 )
 
 // Register the component globally

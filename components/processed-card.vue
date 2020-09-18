@@ -7,9 +7,9 @@
           <div class="fit-content row align-items-center m-0">
                 <div class="row m-0 text-dark">
                     <div class="card icon mr-2 ml-0">
-                        <fa class="" icon="barcode"/>
+                        <fa class="" icon="box"/>
                     </div>
-                    <b class="m-auto">Products</b>
+                    <b class="m-auto">Processed stock available</b>
                 </div>
             </div>
         </template>
@@ -18,24 +18,12 @@
             <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
             <b-spinner small class="m-1" type="grow" label="Spinning"></b-spinner>
           </div>
-          <div class="text-center" v-if="products.length==0 && emptyProducts==true">
-            No products added
-          </div>
           <b-list-group>
-            <b-list-group-item v-for="item in products" v-bind:key="item.product" class="d-flex justify-content-between align-items-center">
-              <span class="text-uppercase product">{{item.product}}</span>
-              <button @click="removeProduct(item)" class="btn btn-default">
-                <fa icon="trash-alt"/>
-              </button>
+            <b-list-group-item v-for="(item,index) in Object.keys(products)" v-bind:key="index" class="d-flex stk-products justify-content-between align-items-center">
+              <span class="text-uppercase product">{{item}}</span>
+              <p v-bind:class='{"stock text-danger":products[item]==0,"stock text-success": products[item]>0}'><b>{{products[item]}} kg</b></p>
             </b-list-group-item>
           </b-list-group>     
-        <template v-slot:footer>
-          <div class="row m-0">
-            <b-button @click="add()" variant="primary" class="col-sm-12 p-2">
-              Add
-            </b-button>
-          </div>
-        </template>
       </b-card>
     </b-card-group>
   </div>
@@ -43,23 +31,26 @@
 
 <script>
   import * as firebase from 'firebase';
-  import addProductModal from './add-product-modal'
+
 
 	export default {
-      name: "products-card",
+      name: "stock-card",
+      props:['date'],
       mounted(){
-          firebase.database().ref('products/').on('value',(data)=>{
-            this.products = []
+          firebase.database().ref('production/').on('value',(data)=>{
+            this.products = {}
             var val = data?data:[];
             val.forEach((product)=>{
               var item = product.val()
-              item['key']= product.key;
-              this.products.push(item);
+              if(!this.products[item.product]){
+                this.products[item.product] = 0;
+              }
+              if(item.sold==false || item.sold =='false'){
+                this.products[item.product]+=Number(item.quantity_after);
+              }
             })
-            if(this.products){
-              if(this.products.length==0)
-                this.emptyProducts=true;
-            }
+            if(this.products == {})
+              this.emptyProducts=true;
           })
       },
       data: function () {
@@ -67,25 +58,7 @@
           products: [],
           emptyProducts:false
         }
-		  },
-      methods:{
-        add(){
-          this.$refs.addProductModal.show();
-        },
-        showSuccessMessage(message){
-          this.$parent.showSuccessMsg(message);
-        },
-        showErrorMessage(message){
-          this.$parent.showError(message);
-        },
-        removeProduct(item){
-          firebase.database().ref('products/'+ item.key).remove().then(()=>{
-            this.showSuccessMessage({message: 'Removed '+ item.product.toUpperCase()});
-          },(err)=>{
-            this.showErrorMessage({message: 'Failed to remove product'})
-          })
-        }
-      }
+		  }
 	}
 </script>
 
@@ -98,6 +71,12 @@
     }
     .card-body{
       font-size: 14px !important;
+      .stock{
+        font-size: 18px !important;
+      }
+      .stk-products {
+        border: none!important;
+      }
     }
     .badge{
       padding: 0.5em;

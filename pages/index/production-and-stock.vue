@@ -130,7 +130,7 @@
                     </b-tabs>
                 </b-card>
             </b-tab>
-            <b-tab title="In stock">
+            <b-tab title="In stock(raw)">
                 <div class="row height-fit m-0 mb-3 full-width justify-content-end">
                     <div class="fit-content row m-0">
                         <div class="main-text d-flex m-0 mr-2">
